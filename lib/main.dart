@@ -12,6 +12,8 @@ Future<void> main() async {
 
   await injectDependencies();
 
+  debugPrint("main():");
+
   runApp(
       MultiBlocProvider(
         providers: [
@@ -29,6 +31,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("MyApp():");
+
 
     return MaterialApp(
       title: 'Property Renter',

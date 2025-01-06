@@ -15,13 +15,14 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     required this.getCommercialDataUseCase,})
       : super(InitialState()) {
     on<HomeScreenEvent>((event, emit) async {
-      emit(LoadingState());
 
       if (event is GetResidentialDataEvent) {
+        emit(LoadingState());
         final residentialData = getResidentialDataUseCase.call(NoParams());
         emit(GetResidentialDataState(residentialData: residentialData));
 
       } else if (event is GetCommercialDataEvent) {
+        emit(LoadingState());
         final commercialData = getCommercialDataUseCase.call(NoParams());
         emit(GetCommercialDataState(commercialData: commercialData));
       }

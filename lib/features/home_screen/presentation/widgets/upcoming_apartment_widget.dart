@@ -25,39 +25,77 @@ class _UpcomingApartmentCardState extends State<UpcomingApartmentCard> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(children: [
-                  Text(apartment.rentalAmount, style: const TextStyle(
-                      color: AppTheme.headingColor,
-                      fontSize: 22),),
-                  const SizedBox(height: 16,),
+                  Text(
+                    apartment.rentalAmount,
+                    style: const TextStyle(
+                        color: AppTheme.headingColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   Row(
                     children: [
-                      const ImageIcon(AssetImage("assets/icons/launch_date.png")),
-                      Text(apartment.launchDate!.toIso8601String().split("T")[0], style: const TextStyle(
-                          color: AppTheme.paragraphColor,
-                          fontSize: 16),),
+                      const ImageIcon(
+                          AssetImage("assets/icons/launch_date.png")),
+                      const SizedBox(
+                        width: 4,
+                      ),
+                      Text(
+                        apartment.launchDate!.toIso8601String().split("T")[0],
+                        style: const TextStyle(
+                            color: AppTheme.paragraphColor, fontSize: 16),
+                      ),
                     ],
                   ),
                 ]),
-                MaterialButton(onPressed: () {
-                  SnackBarMessage.showSnackBar(message: "See details", context: context);
-                },
-                  color: AppTheme.primaryColor, child: const Text("See Details",
-                  style: TextStyle(color: Colors.white, fontSize: 18),),)
+                MaterialButton(
+                  height: 50,
+                  // minWidth: 150,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                  onPressed: () {
+                    SnackBarMessage.showSnackBar(
+                        message: "See details", context: context);
+                  },
+                  color: AppTheme.primaryColor,
+                  child: const Text(
+                    "See Details",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                )
               ],
             ),
             Row(
               children: [
                 Spacer(),
-                Text("${DateTime.now().difference(apartment.launchDate!).inDays} days left", style: const TextStyle(
-                    color: AppTheme.paragraphColor,
-                    fontSize: 16),),
-                ],
+                Text(
+                  "27 days left",
+                  style: const TextStyle(
+                      color: AppTheme.paragraphColor, fontSize: 16),
+                ),
+              ],
             ),
-            LinearProgressIndicator(value: 0.7,),
-            const SizedBox(height: 16,),
+            const SizedBox(
+              height: 4,
+            ),
+            LinearProgressIndicator(
+              value: 0.6,
+              minHeight: 6,
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
           ],
         ),
       ),

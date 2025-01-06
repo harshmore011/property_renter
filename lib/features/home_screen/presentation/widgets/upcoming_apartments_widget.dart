@@ -22,15 +22,15 @@ class _UpcomingApartmentSectionState extends State<UpcomingApartmentSection> {
 
     debugPrint("upcomingApartmentsLength: ${apartments.length}");
 
-    return Column(
+    return Column(mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           children: [
             const Text(
               "Upcoming",
               style: TextStyle(
-                  color: AppTheme.primaryColor,
-                  fontWeight: FontWeight.bold,
+                  color: AppTheme.headingColor,
+                  // fontWeight: FontWeight.bold,
                   fontSize: 20),
             ),
             const Spacer(),
@@ -41,18 +41,21 @@ class _UpcomingApartmentSectionState extends State<UpcomingApartmentSection> {
               },
               child: Text(
                 "View all",
-                style: TextStyle(color: AppTheme.primaryColor),
+                style: TextStyle(color: AppTheme.primaryColor,
+                fontSize: 16),
               ),
             )
           ],
         ),
-        ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: apartments.length,
-            itemBuilder: (context, index) => UpcomingApartmentCard(
-                  apartment: apartments[index],
-                )),
+        Flexible(
+          child: ListView.builder(
+              shrinkWrap: true,
+              // physics: const NeverScrollableScrollPhysics(),
+              itemCount: apartments.length,
+              itemBuilder: (context, index) => UpcomingApartmentCard(
+                    apartment: apartments[index],
+                  )),
+        ),
       ],
     );
   }

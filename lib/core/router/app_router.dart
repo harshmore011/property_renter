@@ -6,7 +6,10 @@ import '../../features/home_screen/presentation/pages/home_screen.dart';
 class AppRouter {
 
   Route<dynamic> generateRoute(RouteSettings settings) {
+    debugPrint("generateRoute(): ${settings.name}");
+
     switch (settings.name) {
+
       case "/":
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       default:

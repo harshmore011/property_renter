@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/snackbar_message.dart';
 import '../../domain/entities/apartment_overview_entity.dart';
@@ -24,14 +25,15 @@ class _RecentlyAddedApartmentSectionState
     debugPrint("recentlyAddedApartmentsLength: ${apartments.length}");
 
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           children: [
             const Text(
               "Recently Added",
               style: TextStyle(
-                  color: AppTheme.primaryColor,
-                  fontWeight: FontWeight.bold,
+                  color: AppTheme.headingColor,
+                  // fontWeight: FontWeight.bold,
                   fontSize: 20),
             ),
             const Spacer(),
@@ -42,23 +44,21 @@ class _RecentlyAddedApartmentSectionState
               },
               child: Text(
                 "View all",
-                style: TextStyle(color: AppTheme.primaryColor),
+                style: TextStyle(color: AppTheme.primaryColor, fontSize: 16),
               ),
             )
           ],
         ),
-        ListView.builder(
-          // controller: ScrollController().,
-          // shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return ApartmentCardSmall(apartment: apartments[index]);
-
-            // return _getBenefitCards(apartments)[index];
-          },
-          itemCount: apartments.length,
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
+        Flexible(
+          child: ListView.builder(
+            itemBuilder: (context, index) {
+              return ApartmentCardSmall(apartment: apartments[index]);
+            },
+            itemCount: apartments.length,
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            // physics: const NeverScrollableScrollPhysics(),
+          ),
         ),
       ],
     );

@@ -5,6 +5,7 @@ import '../../features/home_screen/data/repositories/home_screen_repository_impl
 import '../../features/home_screen/domain/repositories/home_screen_repository.dart';
 import '../../features/home_screen/domain/usecases/get_commercial_data_usecase.dart';
 import '../../features/home_screen/domain/usecases/get_residential_data_usecase.dart';
+import '../../features/home_screen/presentation/blocs/home_screen_bloc.dart';
 import '../router/app_router.dart';
 import '../theme/app_theme.dart';
 
@@ -20,7 +21,8 @@ Future<void> injectDependencies() async {
 
   /// HOME SCREEN
   // Bloc
-  // sl.registerFactory(() => OnboardingBloc(getOnboardingDataUseCase: sl()));
+  sl.registerFactory(() => HomeScreenBloc(getCommercialDataUseCase: sl(),
+      getResidentialDataUseCase: sl()));
   // UseCases
   sl.registerLazySingleton(() => GetCommercialDataUseCase(sl()));
   sl.registerLazySingleton(() => GetResidentialDataUseCase(sl()));
